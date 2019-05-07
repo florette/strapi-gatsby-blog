@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `My Superblog`,
+    title: `Strapi Gatsby Proto`,
     description: `Gatsby blog with Strapi as a headless CMS`,
     author: `@gatsbyjs & @strapi`,
   },
@@ -21,7 +21,8 @@ module.exports = {
                 : 'http://localhost:1337',
             contentTypes: [
                 `article`,
-                `user`
+                `user`,
+                `banner`
             ],
             queryLimit: 1000,
         },

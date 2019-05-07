@@ -6,9 +6,19 @@ import Layout from "../components/layout"
 
 const IndexPage = ({ data }) => (
   <Layout>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
+    <div> 
+        {data.allStrapiBanner.edges.map(document => (
+            <div> 
+                <h2>
+                    {document.node.Heading}
+                </h2>
+                <p>
+                    {document.node.Sub_heading}
+                </p>
+                <Img fixed={document.node.Image.childImageSharp.fixed} />
+            </div>
+        ))}
+    </div>
     <ul>
         {data.allStrapiArticle.edges.map(document => (
             <li key={document.node.id}>
@@ -39,7 +49,7 @@ export const pageQuery = graphql`
                     id
                     image {
                         childImageSharp {
-                            fixed(width: 200, height: 125) {
+                            fixed(width: 200) {
                                 ...GatsbyImageSharpFixed
                             }
                         }
@@ -49,6 +59,24 @@ export const pageQuery = graphql`
                 }
             }
         }
+        allStrapiBanner {
+            edges {
+              node {
+                id
+                Heading
+                Sub_heading
+                CTA_text
+                CTA_link
+                Image {
+                    childImageSharp {
+                        fixed(width: 200, height: 125) {
+                            ...GatsbyImageSharpFixed
+                        }
+                    }
+                }
+              }
+            }
+          }
     }
 `
     
